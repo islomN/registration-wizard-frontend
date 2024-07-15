@@ -1,0 +1,22 @@
+.step-form{
+    text-align: center;
+    display: block;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #eee;
+    width: 50%;
+    margin: 20px auto;
+    background: #eee;
+}
+
+.form-items{
+    width: 100%;
+}
+
+.mat-checkbox-label strong{
+    color: #111;
+}
+
+.prev-button{
+
+}

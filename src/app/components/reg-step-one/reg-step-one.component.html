@@ -1,0 +1,83 @@
+<div class="step-form">
+    <h3>Step 1</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field class="form-items">
+            <mat-label>Login</mat-label>
+            <input
+                type="email"
+                matInput
+                formControlName="login"
+                [errorStateMatcher]="matcher">
+
+            @if (login.hasError('email') && !login.hasError('required')) {
+                <mat-error>Please enter a valid email address</mat-error>
+            }
+
+            @if (login.hasError('required')) {
+                <mat-error>Login is required</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="form-items">
+            <mat-label>Password</mat-label>
+            <input
+                type="password"
+                matInput
+                formControlName="password"
+                [errorStateMatcher]="matcher">
+
+            @if (password.hasError('minlength')) {
+                <mat-error>Password min length</mat-error>
+            }
+
+            @if (password.hasError('required')) {
+                <mat-error>Password is required</mat-error>
+            }
+
+            @if (!password.hasError('minlength') && password.hasError('pattern')) {
+                <mat-error>Password must contain min 1 digit and min 1 uppercase letter</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="form-items">
+            <mat-label>Confirm Password</mat-label>
+            <input
+                type="password"
+                matInput
+                formControlName="confirmPassword"
+                [errorStateMatcher]="matcher">
+
+            @if (confirmPassword.hasError('required')) {
+                <mat-error>Confirm Password is required</mat-error>
+            }
+
+            @if (confirmPassword.hasError('confirmPasswordValidator')) {
+                <mat-error>Confirm must be the same with password </mat-error>
+            }
+
+        </mat-form-field>
+
+        <div class="form-items">
+            <mat-checkbox
+                class="mat-checkbox-label"
+                formControlName="agree"
+            >
+                <strong>Agree to work for food !</strong>
+            </mat-checkbox>
+
+            @if (agree.hasError('required') && showAgreeError ) {
+                <mat-error>Agree is required</mat-error>
+            }
+        </div>
+
+        <div class="form-items">
+            <button
+                type="submit"
+                mat-flat-button
+            >
+                Next step
+            </button>
+        </div>
+
+    </form>
+</div>

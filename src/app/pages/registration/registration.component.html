@@ -1,0 +1,17 @@
+<div>
+    <div *ngIf="loading" class="form-spinner">
+        <h5>Loading ...</h5>
+    </div>
+    <app-reg-step-one
+        *ngIf="step === StepEnum.One"
+        (nextHandler)="next()"
+        [model]="model"
+    ></app-reg-step-one>
+
+    <app-reg-step-two
+        *ngIf="step === StepEnum.Two"
+        (prevHandler)="prev()"
+        (submitHandler)="submit()"
+    ></app-reg-step-two>
+</div>
+

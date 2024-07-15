@@ -1,0 +1,56 @@
+<div class="step-form">
+    <h3>Step 2</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field class="form-items">
+            <mat-label>Select Country</mat-label>
+            <mat-select
+                formControlName="countryId"
+                [errorStateMatcher]="matcher"
+                (selectionChange)="getProvincesByCountry()"
+            >
+                <mat-option
+                    *ngFor="let country of CountryService.countries"
+                    [value]="country.id"
+                >
+                    {{ country.name }}
+                </mat-option>
+            </mat-select>
+
+            @if (countryId.hasError('required')) {
+                <mat-error>Country is required</mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="form-items">
+            <mat-label>Select Province</mat-label>
+            <mat-select
+                formControlName="provinceId"
+                [errorStateMatcher]="matcher"
+            >
+                <mat-option
+                    *ngFor="let province of ProvinceService.provinces"
+                    [value]="province.id"
+                >
+                    {{ province.name }}
+                </mat-option>
+            </mat-select>
+
+            @if (provinceId.hasError('required')) {
+                <mat-error>Province is required</mat-error>
+            }
+
+        </mat-form-field>
+
+        <div class="form-items">
+
+            <a mat-stroked-button (click)="prev()">Prev step</a>
+            <button
+                type="submit"
+                mat-flat-button
+            >
+                Submit
+            </button>
+        </div>
+
+    </form>
+</div>
